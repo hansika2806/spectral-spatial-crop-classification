@@ -1,0 +1,426 @@
+🌾 Spectral–Spatial Hyperspectral Image Classification
+Hybrid CNN Ensemble with Attention-Based Feature Fusion
+
+Dataset: Indian Pines (AVIRIS)
+
+📌 Project Summary
+
+This project presents a spectral–spatial deep learning framework for agricultural land-cover classification using hyperspectral remote sensing data.
+
+Unlike conventional RGB imagery, hyperspectral images contain hundreds of contiguous spectral bands per pixel, enabling fine-grained material discrimination based on reflectance signatures. However, this high dimensionality introduces challenges such as spectral redundancy, limited labeled samples, and the curse of dimensionality.
+
+To address these challenges, this work proposes a multi-branch hybrid CNN architecture integrating:
+
+Spectral feature extraction (1D CNN)
+
+Spatial context modeling (2D CNN)
+
+Joint spectral–spatial representation learning (3D CNN)
+
+Attention-based feature fusion
+
+Ensemble learning strategy
+
+The framework is evaluated on the Indian Pines agricultural dataset and benchmarked against classical and deep learning baselines.
+
+🌍 Problem Definition
+
+Given a hyperspectral image cube:
+
+𝑋
+∈
+𝑅
+𝐻
+×
+𝑊
+×
+𝐵
+X∈R
+H×W×B
+
+where:
+
+𝐻
+,
+𝑊
+H,W = spatial dimensions
+
+𝐵
+B ≈ 200 spectral bands
+
+Each pixel:
+
+𝑥
+𝑖
+,
+𝑗
+∈
+𝑅
+𝐵
+x
+i,j
+	​
+
+∈R
+B
+
+The objective is:
+
+Perform pixel-wise supervised classification into one of 16 agricultural land-cover classes by leveraging both spectral signatures and local spatial context.
+
+This is a high-dimensional, multi-class classification problem under limited labeled data.
+
+🛰️ Dataset: Indian Pines
+
+Sensor: AVIRIS
+
+Spatial Resolution: 145 × 145 pixels
+
+Spectral Bands: ~200 usable bands
+
+Classes: 16 agricultural categories
+
+Domain: Agricultural region, Indiana, USA
+
+Key Challenges
+
+High inter-class spectral similarity (e.g., crop variants)
+
+Class imbalance
+
+Small sample problem
+
+Spectral redundancy
+
+Hughes phenomenon (curse of dimensionality)
+
+🧠 Technical Framework
+1️⃣ Spectral Feature Learning (1D CNN)
+
+Operates along the spectral dimension to model material-specific reflectance patterns.
+
+𝑓
+𝑠
+=
+𝐶
+𝑁
+𝑁
+1
+𝐷
+(
+𝑥
+𝑠
+𝑝
+𝑒
+𝑐
+𝑡
+𝑟
+𝑎
+𝑙
+)
+f
+s
+	​
+
+=CNN
+1D
+	​
+
+(x
+spectral
+	​
+
+)
+
+Captures subtle spectral absorption and reflection characteristics.
+
+2️⃣ Spatial Feature Learning (2D CNN)
+
+Operates on local spatial patches (e.g., 5×5 neighborhood) to model texture and contextual information.
+
+𝑓
+𝑝
+=
+𝐶
+𝑁
+𝑁
+2
+𝐷
+(
+𝑥
+𝑠
+𝑝
+𝑎
+𝑡
+𝑖
+𝑎
+𝑙
+)
+f
+p
+	​
+
+=CNN
+2D
+	​
+
+(x
+spatial
+	​
+
+)
+
+Captures structural and neighborhood dependencies.
+
+3️⃣ Joint Spectral–Spatial Learning (3D CNN)
+
+Performs volumetric convolution across spatial and spectral dimensions simultaneously.
+
+𝑓
+𝑠
+𝑠
+=
+𝐶
+𝑁
+𝑁
+3
+𝐷
+(
+𝑥
+𝑝
+𝑎
+𝑡
+𝑐
+ℎ
+)
+f
+ss
+	​
+
+=CNN
+3D
+	​
+
+(x
+patch
+	​
+
+)
+
+Learns integrated representations for improved discriminative power.
+
+🔥 Attention-Based Feature Fusion
+
+Instead of naïve concatenation, the extracted features are adaptively weighted using an attention mechanism:
+
+𝐹
+=
+[
+𝑓
+𝑠
+;
+𝑓
+𝑝
+;
+𝑓
+𝑠
+𝑠
+]
+F=[f
+s
+	​
+
+;f
+p
+	​
+
+;f
+ss
+	​
+
+]
+𝐹
+′
+=
+𝐴
+𝑡
+𝑡
+𝑒
+𝑛
+𝑡
+𝑖
+𝑜
+𝑛
+(
+𝐹
+)
+F
+′
+=Attention(F)
+
+This enables the network to dynamically emphasize the most informative representation for classification.
+
+🎯 Output Layer
+
+Final classification is performed using:
+
+Fully connected layers
+
+Softmax activation
+
+𝑃
+(
+𝑦
+∣
+𝑥
+)
+=
+𝑆
+𝑜
+𝑓
+𝑡
+𝑚
+𝑎
+𝑥
+(
+𝑊
+𝐹
+′
++
+𝑏
+)
+P(y∣x)=Softmax(WF
+′
++b)
+
+Loss Function: Cross-Entropy Loss
+Optimizer: Adam
+
+📐 Addressing the Curse of Dimensionality
+
+Hyperspectral data inherently suffers from high dimensionality relative to available labeled samples. To mitigate this:
+
+Spectral convolution acts as implicit feature compression
+
+Regularization techniques (dropout, weight decay) reduce overfitting
+
+Optional PCA-based dimensionality reduction is evaluated in ablation studies
+
+Patch-based learning introduces spatial priors
+
+The impact of dimensionality reduction on model performance is systematically analyzed.
+
+📊 Evaluation Protocol
+
+Performance is assessed using:
+
+Overall Accuracy (OA)
+
+Average Accuracy (AA)
+
+Kappa Coefficient (κ)
+
+Per-class Accuracy
+
+Confusion Matrix
+
+The proposed hybrid framework is benchmarked against:
+
+Support Vector Machine (SVM)
+
+1D CNN (Spectral-only)
+
+2D CNN (Spatial-only)
+
+3D CNN (Joint baseline)
+
+An ablation study evaluates:
+
+Contribution of each branch
+
+Effectiveness of attention fusion
+
+Impact of dimensionality reduction
+
+🧮 Theoretical Foundations
+
+This project integrates principles from:
+
+Linear Algebra
+
+Tensor operations
+
+Convolution as structured matrix multiplication
+
+High-dimensional embedding transformations
+
+Probability Theory
+
+Softmax as categorical distribution modeling
+
+Cross-entropy as negative log-likelihood
+
+Statistical reliability metrics
+
+Optimization Theory
+
+Gradient-based learning
+
+Backpropagation
+
+Regularized empirical risk minimization
+
+🚀 Applications
+
+Precision agriculture
+
+Crop-type discrimination
+
+Vegetation monitoring
+
+Environmental change detection
+
+Land-use analysis
+
+🛠️ Technology Stack
+
+Python
+
+PyTorch
+
+NumPy
+
+SciPy
+
+scikit-learn
+
+Matplotlib
+
+Google Colab (development)
+
+GitHub (version control & reproducibility)
+
+📂 Repository Structure
+Hyperspectral-Classification/
+│
+├── data/
+├── models/
+├── utils/
+├── train.py
+├── evaluate.py
+└── README.md
+🎓 Academic Relevance
+
+This project demonstrates:
+
+High-dimensional data modeling
+
+Spectral–spatial representation learning
+
+Deep ensemble learning
+
+Attention-based feature fusion
+
+Robust evaluation under limited supervision
+
+It bridges remote sensing analytics with modern deep learning methodologies.
