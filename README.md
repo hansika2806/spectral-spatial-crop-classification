@@ -201,3 +201,31 @@ This project integrates:
 ---
 
 ## 📂 Repository Structure
+
+<img width="307" height="387" alt="image" src="https://github.com/user-attachments/assets/6116443f-a137-40d9-90c1-45f22265a162" />
+
+## 🎓 Academic Significance
+
+This project demonstrates:
+
+- High-dimensional data modeling  
+- Spectral–spatial representation learning  
+- Hybrid deep ensemble design  
+- Attention-based fusion mechanisms  
+- Robust evaluation under limited supervision  
+
+It bridges remote sensing analytics with modern deep learning methodologies.
+
+---
+## Future Improvements
+
+Transformer-based spectral modeling
+
+Graph Convolutional Networks for spatial relations
+
+Semi-supervised learning
+
+Self-supervised pretraining
+
+Domain adaptation for cross-dataset generalization
+
