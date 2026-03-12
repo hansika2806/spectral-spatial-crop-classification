@@ -187,19 +187,6 @@ This project integrates:
 
 ---
 
-## 🛠️ Technology Stack
-
-- Python  
-- PyTorch  
-- NumPy  
-- SciPy  
-- scikit-learn  
-- Matplotlib  
-- Google Colab (development)  
-- GitHub (version control and reproducibility)  
-
----
-
 ## 📂 Repository Structure
 
 <img width="307" height="387" alt="image" src="https://github.com/user-attachments/assets/6116443f-a137-40d9-90c1-45f22265a162" />
