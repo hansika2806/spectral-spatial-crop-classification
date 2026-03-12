@@ -130,18 +130,7 @@ Hyperspectral data contains high-dimensional feature spaces relative to availabl
 
 The impact of dimensionality reduction is analyzed through ablation studies.
 
----
-
-## 📊 Evaluation Metrics
-
-Performance is evaluated using:
-
-- Overall Accuracy (OA)  
-- Average Accuracy (AA)  
-- Kappa Coefficient (κ)  
-- Per-class accuracy  
-- Confusion Matrix  
-
+--- 
 ### Baseline Comparisons
 
 - Support Vector Machine (SVM)  
